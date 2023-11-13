@@ -1,15 +1,16 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
-import EventSource from "eventsource";
-export const dynamic = "force-dynamic";
+import { PrismaClient } from "@prisma/client";
 
-const sensorData: any[] = [];
+const prisma = new PrismaClient();
 
 let storedData: string | null = null;
 
 export async function POST(req: any) {
   // Parse the incoming JSON data from the request body
   const data = await req.json();
+  const savedEntry = await prisma.lectorEntry.create({
+    data: data,
+  });
   storedData = data;
   // Send a response back to the ESP32
   return NextResponse.json({ data });
