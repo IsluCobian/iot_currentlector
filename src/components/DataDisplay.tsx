@@ -18,7 +18,7 @@ export default function DataDisplay() {
   // Fetch data on component mount and set up a periodic polling
   useEffect(() => {
     fetchData();
-    const intervalId = setInterval(fetchData, 5000); // Adjust the polling interval as needed
+    const intervalId = setInterval(fetchData, 4500); // Adjust the polling interval as needed
 
     return () => clearInterval(intervalId);
   }, []);
