@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArcGauge, RadialGauge } from "@progress/kendo-react-gauges";
+import { ArcGauge } from "@progress/kendo-react-gauges";
 
 export default function DataDisplay() {
   const [sensorData, setSensorData] = useState<any>(null);
@@ -29,7 +29,7 @@ export default function DataDisplay() {
         Sensor Data
       </h2>
       {sensorData !== null ? (
-        <div className="flex  w-full text-center items-center">
+        <div className="flex w-full text-center items-center">
           <div className="basis-1/3">
             <ArcGauge
               value={sensorData.current}
