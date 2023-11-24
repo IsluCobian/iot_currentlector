@@ -11,10 +11,18 @@
   "dependencies": {
     "@prisma/client": "^5.5.2",
     "@progress/kendo-react-gauges": "^6.1.0",
+    "@radix-ui/react-tabs": "^1.0.4",
+    "chart.js": "^4.4.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
     "eventsource": "^2.0.2",
+    "lucide-react": "^0.292.0",
     "next": "14.0.1",
     "react": "^18",
-    "react-dom": "^18"
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18",
+    "tailwind-merge": "^2.0.0",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/eventsource": "^1.1.14",
