@@ -12,9 +12,8 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { LectorEntry, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { LectorEntry } from "@prisma/client";
+import { getAllData } from "@/lib/actions";
 
 ChartJS.register(
   CategoryScale,
@@ -33,22 +32,21 @@ interface ChartProps {
 const ChartComponent: React.FC<ChartProps> = ({ entries: initialEntries }) => {
   const [entries, setEntries] = useState<LectorEntry[]>(initialEntries || []);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await prisma.lectorEntry.findMany({
-          orderBy: {
-            submitAt: "asc",
-          },
-        });
-        setEntries(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const data = await getAllData();
+      setEntries(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
-    // Fetch data when the component mounts
+  // Fetch data on component mount and set up a periodic polling
+  useEffect(() => {
     fetchData();
+    const intervalId = setInterval(fetchData, 4500); // Adjust the polling interval as needed
+
+    return () => clearInterval(intervalId);
   }, []);
 
   const options = {
