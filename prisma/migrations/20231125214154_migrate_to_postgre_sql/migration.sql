@@ -1,0 +1,10 @@
+-- CreateTable
+CREATE TABLE "LectorEntry" (
+    "id" TEXT NOT NULL,
+    "current" DOUBLE PRECISION NOT NULL,
+    "power" DOUBLE PRECISION NOT NULL,
+    "energy" DOUBLE PRECISION NOT NULL,
+    "submitAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT "LectorEntry_pkey" PRIMARY KEY ("id")
+);
