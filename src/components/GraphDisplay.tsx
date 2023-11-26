@@ -62,18 +62,19 @@ const ChartComponent: React.FC<ChartProps> = ({ entries: initialEntries }) => {
   };
 
   const data = {
-    labels: entries.map((entry) => entry.submitAt.toString()),
+    labels: entries.map(
+      (entry) =>
+        entry.submitAt.getHours() +
+        ":" +
+        entry.submitAt.getMinutes() +
+        ":" +
+        entry.submitAt.getSeconds()
+    ),
     datasets: [
       {
         label: "Current",
         data: entries.map((entry) => entry.current),
         borderColor: "rgba(75,192,192,1)",
-        fill: false,
-      },
-      {
-        label: "Power",
-        data: entries.map((entry) => entry.power),
-        borderColor: "rgba(192,75,192,1)",
         fill: false,
       },
       {
@@ -84,8 +85,38 @@ const ChartComponent: React.FC<ChartProps> = ({ entries: initialEntries }) => {
       },
     ],
   };
+  const power = {
+    labels: entries.map(
+      (entry) =>
+        entry.submitAt.getHours() +
+        ":" +
+        entry.submitAt.getMinutes() +
+        ":" +
+        entry.submitAt.getSeconds()
+    ),
+    datasets: [
+      {
+        label: "Power",
+        data: entries.map((entry) => entry.power),
+        borderColor: "rgba(192,75,192,1)",
+        fill: false,
+      },
+    ],
+  };
 
-  return <Line options={options} data={data} />;
+  return (
+    <div className="flex w-full flex-col space-y-4 items-center">
+      <h2 className="scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+        {entries.length > 0 &&
+          new Date(entries[entries.length - 1].submitAt).toLocaleDateString(
+            "es-ES",
+            { weekday: "long" }
+          )}
+      </h2>
+      <Line height={"40%"} options={options} data={power} />
+      <Line height={"40%"} options={options} data={data} />
+    </div>
+  );
 };
 
 export default ChartComponent;

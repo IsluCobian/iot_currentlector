@@ -1,5 +1,6 @@
 import DataDisplay from "@/components/DataDisplay";
 import ChartComponent from "@/components/GraphDisplay";
+import PredictionDisplay from "@/components/PredictionDisplay";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         </TabsContent>
         <TabsContent value="graphs" className="w-full mt-4">
           <ChartComponent />
+          <PredictionDisplay />
         </TabsContent>
       </Tabs>
     </main>
