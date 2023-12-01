@@ -34,7 +34,7 @@ export default function DataDisplay() {
             <ArcGauge
               value={sensorData.current}
               color="#C70039"
-              scale={{ min: 0, max: 5 }}
+              scale={{ min: 0, max: 3 }}
             />
             <p className="leading-7 [&:not(:first-child)]:mt-6">
               {sensorData.current} Amps
@@ -54,7 +54,7 @@ export default function DataDisplay() {
             <ArcGauge
               value={sensorData.energy}
               color="#0C5690"
-              scale={{ min: 0, max: 1000 }}
+              scale={{ min: 0, max: 50 }}
             />
             <p className="leading-7 [&:not(:first-child)]:mt-6">
               {sensorData.energy} Energy
